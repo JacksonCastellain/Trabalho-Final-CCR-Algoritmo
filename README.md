@@ -3,6 +3,7 @@
   ## Desenvolvedores: 
   
   >>  **Jackson Castellain**
+  
   >>  **Lucas Chiarello**
 
 >O trabalho final do CCR Algoritmos e Programação é uma agenda de compromissos. A agenda deverá conter a data e hora do compromisso, descrição e duração (em horas) do mesmo.
