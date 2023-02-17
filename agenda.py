@@ -13,27 +13,32 @@ def inserir(e):
   return e
 
 def listar(eventos):
+  if len(eventos) == 0:
+      print('\n Agenda vazia.')
   for i in range(len(eventos)):
-    print(
-        '\nData: ', eventos[i].data, 
-        '\nHora: ', eventos[i].hora, 
-        '\nDuração: ', eventos[i].duracao, 
-        '\nDescrição: ',eventos[i].descricao 
-        )
-    print('#'*70) 
+      print(
+          '\nData: ', eventos[i].data, 
+          '\nHora: ', eventos[i].hora, 
+          '\nDuração: ', eventos[i].duracao, 
+          '\nDescrição: ',eventos[i].descricao 
+          )
+      print('#'*70) 
 
 def listardata(eventos,data):
-  for i in range(len(eventos)):
-    if(eventos[i].data == data):
-      print(
-          'Data: ', eventos[i].data, 
-          'Hora: ', eventos[i].hora, 
-          'Duração: ', eventos[i].duracao, 
-          'Descrição: ',eventos[i].descricao 
-          )
-    else:
-      print('\nDatas com agendamentos: ',eventos[i].data
+  if len(eventos) != 0:
+    for i in range(len(eventos)):
+      if(eventos[i].data == data):
+        print(
+            '\nData: ', eventos[i].data, 
+            '\nHora: ', eventos[i].hora, 
+            '\nDuração: ', eventos[i].duracao, 
+            '\nDescrição: ',eventos[i].descricao 
             )
+    if (eventos[i].data != data):
+      print('\nAgenda Vazia Nesta Data')
+      print('\nDatas com agendamentos: ',eventos[i].data)
+  else:
+    print('\nAgenda Vazia.')
 
 def deletarTudo(eventos):
   if len(eventos) != 0:
@@ -49,6 +54,8 @@ def deletardata(eventos, data):
         eventos.pop(i)
         print("\nContato removido!")
         break
+  else:
+    print('\nA agenda está vazia!')
 
 eventos = []
 
