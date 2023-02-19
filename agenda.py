@@ -15,7 +15,7 @@ def inserir(e):
 
 def listar(eventos):
   if len(eventos) == 0:
-      print('\n Agenda vazia.')
+      print('\n\t  Agenda vazia.')
   for i in range(len(eventos)):
       print(
           '\nData: ', eventos[i].data, 
@@ -27,7 +27,9 @@ def listar(eventos):
 
 
 def listardata(eventos,data):
-  if len(eventos) != 0:
+  if len(eventos) == 0:
+    print('\n\tA agenda está vazia!')
+    flag = False
     for i in range(len(eventos)):
       if(eventos[i].data == data):
         print(
@@ -37,15 +39,16 @@ def listardata(eventos,data):
             '\nDescrição: ',eventos[i].descricao 
             )
         print('#'*70)
-      else:
-        print('\nAgenda Vazia nessa Data')
-        print('\nDatas com agendamentos: ',eventos[i].data)
+        flag = True
+    if flag == False:
+      print('\nAgenda Vazia')
   else:
-    print('\nAgenda Vazia.')
+    print('\nA agenda está vazia!')
 
 
 def listar_hora(eventos,data,hora):
   if len(eventos) != 0:
+    flag = False
     for i in range(len(eventos)):
       if(eventos[i].data == data and eventos[i].hora == hora):
         print(
@@ -54,17 +57,16 @@ def listar_hora(eventos,data,hora):
             '\nDescrição: ',eventos[i].descricao 
             )
         print('#'*70) 
-      elif (eventos[i].data != data):
-        print('\nAgenda Vazia Nesta Data')
-        print('\nDatas com agendamentos: ',eventos[i].data)
-      elif (eventos[i].hora != hora):
-          print('\nAgenda Vazia nessa Hora')
-          print('\nHora com agendamentos:',eventos[i].hora)
+        flag = True
+    if flag == False:
+      print('\nAgenda Vazia')
   else:
-    print('\nAgenda Vazia.')
+    print('\nA agenda está vazia!') 
 
-def alterar_evento(eventos,data,hora):
+
+def editar_evento(eventos,data,hora):
   if len(eventos) != 0:
+    flag = False
     for i in range(len(eventos)):
       if(eventos[i].data == data and eventos[i].hora == hora):
         print(
@@ -75,8 +77,11 @@ def alterar_evento(eventos,data,hora):
         print()
         eventos[i].duracao, = input('Nova duração: ')
         eventos[i].descricao  = input('Nova descrição: ')
+        flag = True
+    if flag == False:
+      print('\nAgenda Vazia')
   else:
-    print('\nAgenda Vazia.')
+    print('\nA agenda está vazia!')
 
 
 def deletarTudo(eventos):
@@ -89,14 +94,14 @@ def deletarTudo(eventos):
 
 def deletardata(eventos, data):
   if len(eventos) != 0:
+    flag = False
     for i in range(len(eventos)):
       if(eventos[i].data==data):
         eventos.pop(i)
         print("\nContato removido!")
-        break
-    if (eventos[i].data != data):
+        flag = True
+    if flag == False:
       print('\nAgenda Vazia Nesta Data')
-      print('\nDatas com agendamentos: ',eventos[i].data)
   else:
     print('\nA agenda está vazia!')
 
@@ -131,7 +136,7 @@ while True:
   elif op == 5:
     data = input('Digite a data: ')
     hora = input('Digite o hora: ')
-    alterar_evento(eventos,data,hora)
+    editar_evento(eventos,data,hora)
   elif op == 6:
     data = input('Digite a data:')
     deletardata(eventos,data)
@@ -140,4 +145,4 @@ while True:
   elif op == 8:
     break
   else:
-    print('Op Inválida!')
+    print('\nDigite um número dentro das opções!')
