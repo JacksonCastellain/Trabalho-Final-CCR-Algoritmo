@@ -5,6 +5,7 @@ class Agenda():
   descricao = None
 
 
+#Função que retorna se a lista de eventos está vazia
 def listaVazia(eventos):
   if len(eventos)==0:
     print('\n\t A agenda está vazia!')
@@ -12,6 +13,7 @@ def listaVazia(eventos):
   return False
 
 
+#Função que insere eventos com verificação de mesma data e horário
 def inserir(eventos,data,hora,duracao,descricao,e):
   e.data = data
   e.hora = hora
@@ -27,6 +29,7 @@ def inserir(eventos,data,hora,duracao,descricao,e):
   return e
 
 
+#Função que lista todos os eventos
 def listar(eventos):
   if len(eventos) == 0:
       print('\n\t  A agenda está vazia!')
@@ -35,7 +38,7 @@ def listar(eventos):
       del eventos[i]
     else:
       print(
-          '\nData: ', eventos[i].data, 
+          '\nData: ', eventos[i].data,
           '\nHora: ', eventos[i].hora, 
           '\nDuração: ', eventos[i].duracao, 
           '\nDescrição: ',eventos[i].descricao 
@@ -43,12 +46,13 @@ def listar(eventos):
       print('#'*70)
 
 
+#Função que lista um evento por data
 def listarData(eventos,data):
   flag = False
   for i in range(len(eventos)):
     if(eventos[i].data == data):
       print(
-          '\nData: ', eventos[i].data, 
+          '\nData: ', eventos[i].data,
           '\nHora: ', eventos[i].hora, 
           '\nDuração: ', eventos[i].duracao, 
           '\nDescrição: ',eventos[i].descricao 
@@ -59,6 +63,7 @@ def listarData(eventos,data):
     print('\nAgenda Vazia')
  
 
+#Função que lista um evento por data e hora
 def listarHora(eventos,data,hora):
   flag = False
   for i in range(len(eventos)):
@@ -74,6 +79,7 @@ def listarHora(eventos,data,hora):
     print('\nAgenda Vazia')
 
 
+#Função que edita a duração e a descrição de um evento
 def editarEvento(eventos,data,hora):
   flag = False
   for i in range(len(eventos)):
@@ -91,6 +97,7 @@ def editarEvento(eventos,data,hora):
     print('\nCompromisso não encontrado')
 
 
+#Função que deleta um evento específico
 def deletarData(eventos, data,hora):
     flag = False
     for i in range(len(eventos)):
@@ -102,6 +109,7 @@ def deletarData(eventos, data,hora):
       print('\n Compromisso não encontrado')
 
 
+#Função que deleta todos os eventos da agenda
 def deletarTudo(eventos):
   if len(eventos) != 0:
     eventos.clear()
@@ -123,8 +131,11 @@ while True:
   print('7 - Deletar todos os eventos')
   print('8 - Sair.')
 
-  op = int(input('Entre com a opção desejada: '))
-
+  try:
+    op = int(input('Entre com a opção desejada: '))
+  except:
+    print('\n\tDigite somente números inteiros.')
+    quit()
   if op == 1:
       data = input('Digite a data: ')
       hora = input('Digite o hora: ')
