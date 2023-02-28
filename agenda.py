@@ -7,7 +7,7 @@ class Agenda():
 
 #Função que retorna se a lista de eventos está vazia
 def listaVazia(eventos):
-  if len(eventos)==0:
+  if len(eventos) == 0:
     print('\n\t A agenda está vazia!')
     return True
   return False
@@ -99,14 +99,14 @@ def editarEvento(eventos,data,hora):
 
 #Função que deleta um evento específico
 def deletarData(eventos, data,hora):
-    flag = False
-    for i in range(len(eventos)):
-      if(eventos[i].data == data and eventos[i].hora == hora):
-        del eventos[i]
-        print("\n Evento removido!")
-        flag = True
-    if flag == False:
-      print('\n Compromisso não encontrado')
+  flag = False
+  for i in range(len(eventos)):
+    if(eventos[i].data == data and eventos[i].hora == hora):
+      eventos.pop(i)
+      print("\n Evento removido!")
+      flag = True
+  if flag == False:
+    print('\n Compromisso não encontrado')
 
 
 #Função que deleta todos os eventos da agenda
@@ -149,7 +149,7 @@ while True:
     if listaVazia(eventos) == True:
       continue
     else:
-      data = input('Digite a data:')
+      data = input('Digite a data: ')
       listarData(eventos,data)
   elif op == 4:
     if listaVazia(eventos) == True:
@@ -169,7 +169,7 @@ while True:
     if listaVazia(eventos) == True:
       continue
     else:
-      data = input('Digite a data:')
+      data = input('Digite a data: ')
       hora = input('Digite o hora: ')
       deletarData(eventos,data,hora)
   elif op == 7:
