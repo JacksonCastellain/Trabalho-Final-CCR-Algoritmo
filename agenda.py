@@ -29,6 +29,25 @@ def inserir(eventos,data,hora,duracao,descricao,e):
   return e
 
 
+#Função que ordena por data e hora em ordem crescente
+def ordenarEventos(eventos,e):
+  e.data = Data(data)
+  e.hora = hora.replace(':','')
+  for i in range(len(eventos)):
+    for j in range(0, len(eventos) - i - 1):
+      if eventos[j].data > eventos[j + 1].data:
+        temp = eventos[j]
+        eventos[j] = eventos[j+1]
+        eventos[j+1] = temp
+      elif eventos[j].data == eventos[j].data:
+        for i in range(len(eventos)):
+          for j in range(0, len(eventos) - i - 1):
+            if eventos[j].hora > eventos[j + 1].hora:
+              temp = eventos[j]
+              eventos[j] = eventos[j+1]
+              eventos[j+1] = temp 
+
+
 #Função que lista todos os eventos
 def listar(eventos):
   if len(eventos) == 0:
@@ -37,6 +56,8 @@ def listar(eventos):
     if eventos[i].data == None:
       del eventos[i]
     else:
+      ordenarEventos(eventos,e)
+      #e.data = dataCorreta()
       print(
           '\nData: ', eventos[i].data,
           '\nHora: ', eventos[i].hora, 
@@ -118,6 +139,22 @@ def deletarTudo(eventos):
     print('\n\t A agenda está vazia!')
 
 
+# 20/10/2023 => 20231020
+def Data(data):
+  new_data = data.split('/')[::-1]
+  nova_data = ''
+  nova_data = nova_data.join(new_data)
+  return nova_data
+
+#20231020 => 20/10/2023
+def dataCorreta():
+  f_data = Data(data)[:4]
+  f_data1 = Data(data)[4:6]
+  f_data2 = Data(data)[6:]
+  f_n_data = f_data2 +'/' + f_data1 +'/'+ f_data
+  return f_n_data
+
+
 eventos = []
 
 
@@ -135,9 +172,12 @@ while True:
     op = int(input('Entre com a opção desejada: '))
   except:
     print('\n\tDigite somente números inteiros.')
-    quit()
+    continue
+
   if op == 1:
+      print('\tExemplo: dd/mm/aaaa')
       data = input('Digite a data: ')
+      print('\tExemplo: hh:mm')
       hora = input('Digite o hora: ')
       duracao = input('Duração: ')
       descricao = input('Descrição: ')
@@ -155,21 +195,27 @@ while True:
     if listaVazia(eventos) == True:
       continue
     else:
+      print('\t\tExemplo: dd/mm/aaaa')
       data = input('Digite a data: ')
+      print('\t\tExemplo: hh:mm')
       hora = input('Digite o hora: ')
       listarHora(eventos,data,hora)
   elif op == 5:
     if listaVazia(eventos) == True:
       continue
     else:
+      print('\t\tExemplo: dd/mm/aaaa')
       data = input('Digite a data: ')
+      print('\t\tExemplo: hh:mm')
       hora = input('Digite o hora: ')
       editarEvento(eventos,data,hora)
   elif op == 6:
     if listaVazia(eventos) == True:
       continue
     else:
+      print('\t\tExemplo: dd/mm/aaaa')
       data = input('Digite a data: ')
+      print('\t\tExemplo: hh:mm')
       hora = input('Digite o hora: ')
       deletarData(eventos,data,hora)
   elif op == 7:
